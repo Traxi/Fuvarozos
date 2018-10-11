@@ -1,0 +1,23 @@
+Logikai futási modell:
+
+Program indítás után: Menü : -Új Játék
+							 -Játékszabályok
+							 -Kilépés
+							 
+							 Új játék esetén beállítási lehetőségek:
+							 -Játékosok száma és nevei
+							 -Időszakonkénti  körök hossza alapértelmezés szerint 20 kör
+							 - játék indísa
+							 
+1.Az első kör első szakasza a vásárlási szakasz, itt vehetnek a csapatok járműveket +ba illetve sofőrőket illetve a könyvelési adatlap megtekinthető. ha végzett az egyik csapat passzol a következő csapatnak.Itt hosszabítható meg a műszaki is.
+  Külön táblázat az autókról és adatairól, illetve a sofőrőkről.
+2. Licitálási szakasz a képernyőn megjelennek a fuvarok minden csapat egyszerre látja(Honnan hova, határidő) majd bizonyos idő vagy gomb megnyomás után ugrunk az első csapat alkörére ajánlatot tehet egy vagy mindegyik fuvarra.
+   Így végigmegyünk a csapatokon . A Licitálási kör végén kihirdetik az egyes fuvarok nyerteseit.
+   
+3. A fuvarlevél író kör: A nyertes capatok a fuvarlevelükön keresztül megadhatják hogy az autó vagy autók milyen útvonalon illetve hány sofőrrel haladnak illetve indulnak(a teljes útvonalat fel kell vezetni).
+	Csapatonként végig megy majd egy animáció az adott térképen az autókkal, animáció alatt esélyel rollolódik egy rendőrségi ellenőrzés büntetéssel(pénzbeni, időbeli), illetve lejárt műszakis járművek esetén műszaki hibára is roll.
+	
+4. ugrás vissza az első lépésre, ha lejárt az időszak köreinek száma és van folyamatban fuvar az elvégződik utána váltás a következő időszakra.
+
+
+Ha egy ennyivel megvagyunk elmegyek konzultálni és lebeszélem hogy hogyan váltsunk milyen szabályokkal(mi legyen a sofőrőkkel mi legyen a gépjárművekkel stb.)
