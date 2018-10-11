@@ -6,7 +6,8 @@ Class Player
 
 	
 Class Vehicles
-	VehicleConstructionRound roundNumber
+	Id
+	VehiclePurchaseRound roundNumber
 	VehicleQuality
 	MOTTestDate (Compare this to gamerule's MOT expiration time on game step)
 	
@@ -31,7 +32,7 @@ static Class GameRule
 	Levels {1: Magyarország 70-80-as évek, 2: Magyarország 2000-es évek, 3: Európa 2010 után}
 	Liquidity Dict<Levels, int> (1, -500),(2,-1000),(3,-4000) Player loses when he goes below this value in credits
 	TaxPerRound Dict<Levels,int> (1,50),(2,100),(3,200)
-	VehiclePrice Dict<Levels,VehicleQuality> (1,(normal,600),(2,(good,1200)),(2,(bad,800)),(3,(good,1800)),(3,(bad,1100))
+	VehiclePrice Dict<Levels,VehicleQuality> (1,(normal,600),(2,(good,1200)),(2,(bad,800)),(3,(good,1800)),(3,(bad,1100)) 
 	PolicePenalty Dict<Levels,int> (1,100),(2,250),(3,400)
 	DriverUpkeepPerRound Dict<Levels,int> (1,5),(2
 	

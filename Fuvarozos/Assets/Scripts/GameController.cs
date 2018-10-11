@@ -16,17 +16,16 @@ public enum Levels : byte
     Third
 }
 
-internal interface IOnLoadListener
-{
-    void OnLoadComplete();
-}
-public class GameController : IOnLoadListener
+
+
+public class GameController : MonoBehaviour
 {
     private static GameController instance;
     public static GameController Instance
     {
         get
         {
+            
             if (instance == null)
             {
                 instance = new GameController();
