@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GamePhases : byte
 {
@@ -16,26 +17,28 @@ public enum Levels : byte
     Third
 }
 
-
-
-public class GameController : MonoBehaviour
+public class GameController
 {
     private static GameController instance;
     public static GameController Instance
     {
         get
         {
-            
             if (instance == null)
             {
                 instance = new GameController();
             }
-
             return instance;
+        }
+        set
+        {
+            instance = value;
         }
     }
 
     private Levels CurrentLevel;
+
+    public Dictionary<int, int> RoundNumbers = new Dictionary<int, int>(Gamerules.DefaultRoundNumbers);
 
     private List<Player> _players;
     public List<Player> Players

@@ -11,6 +11,19 @@ public enum Quality
 
 public static class Gamerules
 {
+    public static Dictionary<int, int> DefaultRoundNumbers = new Dictionary<int, int>
+    {
+        {
+            (int)Levels.First, 20
+        },
+        {
+            (int)Levels.Second, 20
+        },
+        {
+            (int)Levels.Third, 20
+        }
+    };
+
     public static Dictionary<Levels, int> Liquidity = new Dictionary<Levels, int>
     {
         {Levels.First,-500 },
