@@ -11,6 +11,21 @@ public enum Quality
 
 public static class Gamerules
 {
+    public static List<GameTile> GameMap = new List<GameTile>
+    {
+        {new GameTile("0","Győr") },
+        {new GameTile("1","Budapest") },
+        {new GameTile("2","Miskolc") },
+        {new GameTile("3","Szombathely") },
+        {new GameTile("4","Székesfehérvár") },
+        {new GameTile("5","Kecskemét") },
+        {new GameTile("6","Debrecen") },
+        {new GameTile("7","Pécs") },
+        {new GameTile("8","Szeged") },
+        {new GameTile("9","Békéscsaba") }
+    };
+
+
     public static Dictionary<int, int> DefaultRoundNumbers = new Dictionary<int, int>
     {
         {

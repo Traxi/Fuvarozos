@@ -79,4 +79,9 @@ public class MenuController : MonoBehaviour
     {
         Debug.Log("OnExitClick");
     }
+
+    public void OnGenerateMapClick()
+    {
+        Helpers.GenerateGameTiles(ref Gamerules.GameMap);
+    }
 }
