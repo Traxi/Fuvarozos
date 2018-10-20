@@ -78,20 +78,55 @@ public static class Helpers
         return gameTiles.Find(x => x.Id == idToFind);
     }
 
+    private class MapPositionHelper
+    {
+        public string TileId;
+        public Vector3 Position;
+    }
+    public static Vector3[] DrawMap()
+    {
+        List<GameTile> map = ReadMapFromFile();
+        List<MapPositionHelper> positions = new List<MapPositionHelper>();
+        for (int i = 0, length = map.Count; i < length; i++)
+        {
+            positions.Add(new MapPositionHelper()
+            {
+                TileId = map[i].Id,
+                Position = new Vector3(i, i)
+            });
+        }
+
+        List<string> visited = new List<string>();
+        foreach (GameTile field in map)
+        {
+            foreach (var item in field.Connections)
+            {
+
+            }
+        }
+
+        return null;
+    }
+
+    private static List<GameTile> ReadMapFromFile()
+    {
+        //Note: This will be moved into assetDatabase later on, and loaded from there.
+        using (StreamReader sr = new StreamReader("helloworld.txt"))
+        {
+            string asd = sr.ReadToEnd();
+            List<GameTile> topkek = FromJson<List<GameTile>>(asd);
+            return topkek;
+        }
+    }
+
+
+
     public static void WriteMapToDisk(ref List<GameTile> gameTiles)
     {
         using (StreamWriter sw = new StreamWriter("helloworld.txt", false))
         {
             sw.Write(ToJson(gameTiles));
         }
-
-        //Note: This will be moved into assetDatabase later on, and loaded from there.
-        //using (StreamReader sr = new StreamReader("helloworld.txt"))
-        //{
-        //    string asd = sr.ReadToEnd();
-        //    List<GameTile> topkek = FromJson<List<GameTile>>(asd);
-        //    topkek.ForEach(x => Debug.Log(x.Id));
-        //}
     }
 
     private class ContainerClass<GenericData>

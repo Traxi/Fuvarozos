@@ -17,6 +17,9 @@ public class MenuController : MonoBehaviour
         TeamCount.onValueChanged.RemoveListener(OnPlayerCounteditEnd);
     }
 
+    public LineRenderer lr;
+    public Vector3[] GameTilePositions;
+
     public GameObject InitialMenu;
     public GameObject PlayerSetup;
     public InputField[] Rounds;
@@ -83,5 +86,8 @@ public class MenuController : MonoBehaviour
     public void OnGenerateMapClick()
     {
         Helpers.GenerateGameTiles(ref Gamerules.GameMap);
+    }
+    public void OnDrawMapClick()
+    {
     }
 }
