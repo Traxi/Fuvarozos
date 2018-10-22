@@ -13,16 +13,16 @@ public static class Gamerules
 {
     public static List<GameTile> GameMap = new List<GameTile>
     {
-        {new GameTile("0","Győr") },
-        {new GameTile("1","Budapest") },
-        {new GameTile("2","Miskolc") },
-        {new GameTile("3","Szombathely") },
-        {new GameTile("4","Székesfehérvár") },
-        {new GameTile("5","Kecskemét") },
-        {new GameTile("6","Debrecen") },
-        {new GameTile("7","Pécs") },
-        {new GameTile("8","Szeged") },
-        {new GameTile("9","Békéscsaba") }
+        {new GameTile("0",new Vector3(5,20,0), Vector3.one ,"Győr") },
+        {new GameTile("1",new Vector3(15,20,0), Vector3.one,"Budapest") },
+        {new GameTile("2",new Vector3(25,20,0), Vector3.one, "Miskolc") },
+        {new GameTile("3",new Vector3(0,10,0), Vector3.one,"Szombathely") },
+        {new GameTile("4",new Vector3(10,10,0), Vector3.one,"Székesfehérvár") },
+        {new GameTile("5",new Vector3(20,10,0), Vector3.one,"Kecskemét") },
+        {new GameTile("6",new Vector3(30,10,0), Vector3.one,"Debrecen") },
+        {new GameTile("7",new Vector3(5,0,0), Vector3.one,"Pécs") },
+        {new GameTile("8",new Vector3(15,0,0), Vector3.one,"Szeged") },
+        {new GameTile("9",new Vector3(25,0,0), Vector3.one,"Békéscsaba") }
     };
 
 

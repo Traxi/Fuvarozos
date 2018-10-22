@@ -32,6 +32,7 @@ public static class Helpers
         GenerateConnectionBetweenTiles(ref gameTiles, "7", "8", 4);
         //Szeged
         GenerateConnectionBetweenTiles(ref gameTiles, "8", "9", 2);
+        Debug.Log("Generation done!");
 
         WriteMapToDisk(ref gameTiles);
 
@@ -39,21 +40,31 @@ public static class Helpers
     public static void GenerateConnectionBetweenTiles(ref List<GameTile> gameTiles, string from, string to, int fieldsBetween)
     {
         GameTile From = FindGameTileById(ref gameTiles, from);
+        GameTile To = FindGameTileById(ref gameTiles, to);
         GameTile latestAdded = From;
         GameTile newTile = new GameTile("");
         for (int i = 0; i < fieldsBetween; i++)
         {
+            Vector3 tarDir = To.TilePosition - From.TilePosition;
+            Vector3 angleDir = Vector3.up;
+            if (tarDir.y < 0 && tarDir.x > 0)
+            {
+                angleDir = Vector3.down;
+            }
 
-            newTile = new GameTile(GenerateNewId(ref gameTiles));
+            newTile = new GameTile(GenerateNewId(ref gameTiles))
+            {
+                TilePosition = Vector3.Lerp(From.TilePosition, To.TilePosition, 1f / (fieldsBetween + 1) * (i + 1)),
+                TileRotation = Vector3.Angle(tarDir, angleDir) * new Vector3(0, 0, 1),
+                TileScale = new Vector3(1, 1 + (1f / (fieldsBetween)), 1)
+            };
             newTile.Connections.Add(latestAdded.Id);
             latestAdded.Connections.Add(newTile.Id);
             gameTiles.Add(newTile);
             latestAdded = newTile;
         }
-        GameTile To = FindGameTileById(ref gameTiles, to);
         latestAdded.Connections.Add(newTile.Id);
         To.Connections.Add(latestAdded.Id);
-
     }
 
     public static string GenerateNewId(ref List<GameTile> gameTiles)
@@ -86,25 +97,24 @@ public static class Helpers
     public static Vector3[] DrawMap()
     {
         List<GameTile> map = ReadMapFromFile();
-        List<MapPositionHelper> positions = new List<MapPositionHelper>();
-        for (int i = 0, length = map.Count; i < length; i++)
+        GameObject mapcontainer = new GameObject("MapContainer");
+        mapcontainer.transform.position = Vector3.zero;
+        foreach (GameTile tile in map)
         {
-            positions.Add(new MapPositionHelper()
+            GameObject kek;
+            if (tile.Id.StartsWith("_"))
             {
-                TileId = map[i].Id,
-                Position = new Vector3(i, i)
-            });
-        }
-
-        List<string> visited = new List<string>();
-        foreach (GameTile field in map)
-        {
-            foreach (var item in field.Connections)
-            {
-
+                kek = GameObject.Instantiate<GameObject>(Resources.Load("ConnectorTile") as GameObject);
             }
+            else
+            {
+                kek = GameObject.Instantiate<GameObject>(Resources.Load("CityTile") as GameObject);
+            }
+            kek.transform.SetParent(mapcontainer.transform);
+            kek.transform.position = tile.TilePosition;
+            kek.transform.rotation = Quaternion.Euler(tile.TileRotation);
+            kek.transform.localScale = tile.TileScale;
         }
-
         return null;
     }
 
@@ -127,6 +137,7 @@ public static class Helpers
         {
             sw.Write(ToJson(gameTiles));
         }
+        Debug.Log("Write to disk done!");
     }
 
     private class ContainerClass<GenericData>

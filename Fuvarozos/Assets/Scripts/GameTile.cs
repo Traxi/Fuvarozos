@@ -22,9 +22,19 @@ public class GameTile
         }
     }
 
+    public Vector3 TilePosition;
+    public Vector3 TileRotation;
+    public Vector3 TileScale;
     public GameTile(string id, string name = "")
     {
         Id = id;
         Name = name;
+    }
+    public GameTile(string id, Vector3 pos, Vector3 scale, string name = "")
+    {
+        Id = id;
+        Name = name;
+        TilePosition = pos;
+        TileScale = scale;
     }
 }
