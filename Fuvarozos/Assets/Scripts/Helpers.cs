@@ -94,11 +94,11 @@ public static class Helpers
         public string TileId;
         public Vector3 Position;
     }
-    public static Vector3[] DrawMap()
+    public static GameObject DrawMap()
     {
         List<GameTile> map = ReadMapFromFile();
         GameObject mapcontainer = new GameObject("MapContainer");
-        mapcontainer.transform.position = Vector3.zero;
+        mapcontainer.transform.position = new Vector3(200,200,1);
         foreach (GameTile tile in map)
         {
             GameObject kek;
@@ -109,13 +109,15 @@ public static class Helpers
             else
             {
                 kek = GameObject.Instantiate<GameObject>(Resources.Load("CityTile") as GameObject);
+
             }
             kek.transform.SetParent(mapcontainer.transform);
             kek.transform.position = tile.TilePosition;
             kek.transform.rotation = Quaternion.Euler(tile.TileRotation);
             kek.transform.localScale = tile.TileScale;
+            
         }
-        return null;
+        return mapcontainer;
     }
 
     private static List<GameTile> ReadMapFromFile()

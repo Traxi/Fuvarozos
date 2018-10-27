@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class MenuController : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class MenuController : MonoBehaviour
 
     public GameObject InitialMenu;
     public GameObject PlayerSetup;
+   
+
     public InputField[] Rounds;
     public InputField TeamCount;
     public InputField[] Teams;
@@ -90,5 +94,11 @@ public class MenuController : MonoBehaviour
     public void OnDrawMapClick()
     {
         Helpers.DrawMap();
+    
+    }
+    public void OnStartGameClick()
+    {
+        SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+       
     }
 }

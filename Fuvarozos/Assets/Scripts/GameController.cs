@@ -17,7 +17,7 @@ public enum Levels : byte
     Third
 }
 
-public class GameController
+public class GameController : MonoBehaviour
 {
     private static GameController instance;
     public static GameController Instance
@@ -77,6 +77,18 @@ public class GameController
 
     public void OnLoadComplete()
     {
+
+    }
+    
+    
+    public void Awake()
+    {
+        instance = this;
+
+    }
+    public void Start()
+    {
+        Helpers.DrawMap();
 
     }
 }
