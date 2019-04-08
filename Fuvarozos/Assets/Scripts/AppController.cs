@@ -6,8 +6,14 @@ public class AppController
 {
     private static AppController instance;
 
-    public int PlayerCount { get { return playerCount; } set { var x = 0;
-            int.TryParse(value, out x) } };
+    public string PlayerCount
+    {
+        get { return playerCount.ToString(); }
+        set
+        {
+            int.TryParse(value, out playerCount);
+        }
+    }
     private int playerCount;
     public static AppController Instance
     {

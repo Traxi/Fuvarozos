@@ -18,20 +18,20 @@ public class MenuController : MonoBehaviour
     public InputField TeamCount;
     public InputField[] Teams;
 
-   private void OnEnable()
+    private void OnEnable()
     {
         TeamCount.onValueChanged.AddListener(OnPlayerCounteditEnd);
-    
+
     }
 
-   private void OnDisable()
+    private void OnDisable()
     {
-       TeamCount.onValueChanged.RemoveListener(OnPlayerCounteditEnd);
+        TeamCount.onValueChanged.RemoveListener(OnPlayerCounteditEnd);
     }
 
-   
 
-    
+
+
 
     private void OnNewGameStart()
     {
@@ -59,7 +59,7 @@ public class MenuController : MonoBehaviour
                 Teams[i].gameObject.SetActive(false);
             }
         }
-        
+
     }
 
     public void OnNewGameClick()
@@ -68,7 +68,7 @@ public class MenuController : MonoBehaviour
         InitialMenu.SetActive(false);
         GameController.Instance = null;
         PlayerSetup.SetActive(true);
-       
+
 
         for (int i = 0, length = Rounds.Length; i < length; i++)
         {
@@ -99,18 +99,18 @@ public class MenuController : MonoBehaviour
     public void OnDrawMapClick()
     {
         Helpers.DrawMap();
-    
+
     }
     public void OnStartGameClick()
     {
-        
+        AppController.Instance.PlayerCount = TeamCount.text;
         SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
-        
-       Debug.Log(TeamCount.text);
-       // Debug.Log(Teams[0].text);
-      
-        
-        
+
+        Debug.Log(TeamCount.text);
+        // Debug.Log(Teams[0].text);
+
+
+
     }
     public void Awake()
     {
