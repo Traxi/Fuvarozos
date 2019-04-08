@@ -29,10 +29,6 @@ public class MenuController : MonoBehaviour
         TeamCount.onValueChanged.RemoveListener(OnPlayerCounteditEnd);
     }
 
-
-
-
-
     private void OnNewGameStart()
     {
         for (int i = 0, length = Rounds.Length; i < length; i++)
@@ -105,16 +101,7 @@ public class MenuController : MonoBehaviour
     {
         AppController.Instance.PlayerCount = TeamCount.text;
         SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
-
         Debug.Log(TeamCount.text);
-        // Debug.Log(Teams[0].text);
-
-
-
-    }
-    public void Awake()
-    {
-        DontDestroyOnLoad(this);
     }
 
 }

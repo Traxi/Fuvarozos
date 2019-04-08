@@ -17,28 +17,17 @@ public enum Levels : byte
     Third
 }
 
-public class GameController : MonoBehaviour
+public class GameController
 {
 
 
     public string PlayerCount;
     public static string[] Rounds;
 
-    private MenuController menucontroller;
-
-
-
     private static GameController instance;
     public static GameController Instance
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new GameController();
-            }
-            return instance;
-        }
+        get { return instance ?? (instance = new GameController()); }
         set
         {
             instance = value;
@@ -52,14 +41,7 @@ public class GameController : MonoBehaviour
     private List<Player> _players;
     public List<Player> Players
     {
-        get
-        {
-            if (_players == null)
-            {
-                _players = new List<Player>();
-            }
-            return _players;
-        }
+        get { return _players ?? (_players = new List<Player>()); }
     }
 
     public void AddPlayers(Player player)
@@ -87,25 +69,6 @@ public class GameController : MonoBehaviour
     public void OnLoadComplete()
     {
 
-    }
-    
-    
-    public void Awake()
-    {
-        instance = this;
-        menucontroller = GetComponent<MenuController>();
-
-
-    }
-    public void Start()
-    {
-       
-       Debug.Log(menucontroller.TeamCount.text);
-       // Helpers.GenerateGameTiles(ref Gamerules.GameMap);
-        Helpers.DrawMap();
-       // Debug.Log(PlayerCount);
-        
-          
     }
 }
 

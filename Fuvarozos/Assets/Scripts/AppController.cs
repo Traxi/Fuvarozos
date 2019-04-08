@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AppController
 {
@@ -8,7 +9,7 @@ public class AppController
 
     private AppController()
     {
-        SceneManagement.activeSceneChanged += OnActiveSceneChanged;
+        SceneManager.activeSceneChanged += OnActiveSceneChanged;
     }
 
     public string PlayerCount
@@ -21,15 +22,7 @@ public class AppController
 
     public static AppController Instance
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new AppController();
-            }
-
-            return instance;
-        }
+        get { return instance ?? (instance = new AppController()); }
     }
 
     private void OnActiveSceneChanged(Scene beforeScene, Scene afterScene)

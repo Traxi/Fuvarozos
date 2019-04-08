@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 using UnityEngine.UI;
 
-public class CitiesDropdown : MonoBehaviour {
+public class CitiesDropdown : MonoBehaviour
+{
 
-  enum Cities
+    enum Cities
     {
         Nincs,
         Győr,
@@ -25,16 +27,15 @@ public class CitiesDropdown : MonoBehaviour {
 
     public void Dropdown_IndexChanged(int index)
     {
+        Debug.Log((Cities)index);
         Cities name = (Cities)index;
-        
-
         if (index == 0)
         {
             selectedcity.text = "Kérlek válassz telephelyet!";
         }
         else
         {
-            selectedcity.text = "Az általad választott székhely: "+name.ToString();
+            selectedcity.text = "Az általad választott székhely: " + name.ToString();
         }
 
     }
@@ -43,14 +44,18 @@ public class CitiesDropdown : MonoBehaviour {
 
     void Start()
     {
+        dropdown.onValueChanged.AddListener(Dropdown_IndexChanged);
         PopulateList();
-
     }
+
+    void OnDestroy()
+    {
+        dropdown.onValueChanged.RemoveListener(Dropdown_IndexChanged);
+    }
+
     void PopulateList()
     {
-        string[] enumNames = Enum.GetNames(typeof(Cities));
-        List<string> names = new List<string>(enumNames);
-        dropdown.AddOptions(names);
+        dropdown.AddOptions(Enum.GetNames(typeof(Cities)).ToList());
     }
 }
 
