@@ -8,27 +8,30 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-
-    private void OnEnable()
-    {
-        TeamCount.onValueChanged.AddListener(OnPlayerCounteditEnd);
-    }
-
-    private void OnDisable()
-    {
-        TeamCount.onValueChanged.RemoveListener(OnPlayerCounteditEnd);
-    }
-
     public LineRenderer lr;
     public Vector3[] GameTilePositions;
 
     public GameObject InitialMenu;
     public GameObject PlayerSetup;
-   
 
     public InputField[] Rounds;
     public InputField TeamCount;
     public InputField[] Teams;
+
+   private void OnEnable()
+    {
+        TeamCount.onValueChanged.AddListener(OnPlayerCounteditEnd);
+    
+    }
+
+   private void OnDisable()
+    {
+       TeamCount.onValueChanged.RemoveListener(OnPlayerCounteditEnd);
+    }
+
+   
+
+    
 
     private void OnNewGameStart()
     {
@@ -56,6 +59,7 @@ public class MenuController : MonoBehaviour
                 Teams[i].gameObject.SetActive(false);
             }
         }
+        
     }
 
     public void OnNewGameClick()
@@ -64,6 +68,7 @@ public class MenuController : MonoBehaviour
         InitialMenu.SetActive(false);
         GameController.Instance = null;
         PlayerSetup.SetActive(true);
+       
 
         for (int i = 0, length = Rounds.Length; i < length; i++)
         {
@@ -98,7 +103,18 @@ public class MenuController : MonoBehaviour
     }
     public void OnStartGameClick()
     {
+        
         SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
-       
+        
+       Debug.Log(TeamCount.text);
+       // Debug.Log(Teams[0].text);
+      
+        
+        
     }
+    public void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
 }

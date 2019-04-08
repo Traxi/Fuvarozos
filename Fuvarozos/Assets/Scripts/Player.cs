@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public int Id;
+    public int Balance;
+    public string Name;
     
 }

@@ -19,6 +19,15 @@ public enum Levels : byte
 
 public class GameController : MonoBehaviour
 {
+
+
+    public string PlayerCount;
+    public static string[] Rounds;
+
+    private MenuController menucontroller;
+
+
+
     private static GameController instance;
     public static GameController Instance
     {
@@ -84,12 +93,19 @@ public class GameController : MonoBehaviour
     public void Awake()
     {
         instance = this;
+        menucontroller = GetComponent<MenuController>();
+
 
     }
     public void Start()
     {
+       
+       Debug.Log(menucontroller.TeamCount.text);
+       // Helpers.GenerateGameTiles(ref Gamerules.GameMap);
         Helpers.DrawMap();
-
+       // Debug.Log(PlayerCount);
+        
+          
     }
 }
 

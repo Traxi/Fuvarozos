@@ -30,6 +30,7 @@ public static class Gamerules
     {
         {
             (int)Levels.First, 20
+
         },
         {
             (int)Levels.Second, 20
@@ -78,17 +79,17 @@ public static class Gamerules
     public static List<Prices> VehiclePrices = new List<Prices>
     {
         {new Prices( Levels.First, Quality.Normal,600,10)},
-        {new Prices( Levels.Second,Quality.Normal,1200,20)},
-        {new Prices( Levels.Second,Quality.Normal,800,25)},
-        {new Prices( Levels.Third, Quality.Normal,1800,80)},
-        {new Prices( Levels.Third, Quality.Normal,1100,100)}
+        {new Prices( Levels.Second,Quality.Good,1200,20)},
+        {new Prices( Levels.Second,Quality.Bad,800,25)},
+        {new Prices( Levels.Third, Quality.Good,1800,80)},
+        {new Prices( Levels.Third, Quality.Bad,1100,100)}
     };
     public static List<Prices> DriverPrices = new List<Prices>
     {
         {new Prices( Levels.First, Quality.Normal,600,10)},
-        {new Prices( Levels.Second,Quality.Normal,1200,20)},
-        {new Prices( Levels.Second,Quality.Normal,800,25)},
-        {new Prices( Levels.Third, Quality.Normal,1800,80)},
-        {new Prices( Levels.Third, Quality.Normal,1100,100)}
+        {new Prices( Levels.Second,Quality.Good,200,20)},
+        {new Prices( Levels.Second,Quality.Bad,100,10)},
+        {new Prices( Levels.Third, Quality.Good,250,150)},
+        {new Prices( Levels.Third, Quality.Bad,80,50)}
     };
 }

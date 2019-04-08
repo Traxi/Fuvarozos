@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public static class Helpers
 {
@@ -99,9 +101,18 @@ public static class Helpers
         List<GameTile> map = ReadMapFromFile();
         GameObject mapcontainer = new GameObject("MapContainer");
         mapcontainer.transform.position = new Vector3(200,200,1);
+        Text text;
+        Font arial;
+        arial = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+
+        GameObject kek = new GameObject();
+        kek.AddComponent<Text>().enabled=true;
+
+
+
         foreach (GameTile tile in map)
         {
-            GameObject kek;
+           
             if (tile.Id.StartsWith("_"))
             {
                 kek = GameObject.Instantiate<GameObject>(Resources.Load("ConnectorTile") as GameObject);
@@ -110,19 +121,32 @@ public static class Helpers
             {
                 kek = GameObject.Instantiate<GameObject>(Resources.Load("CityTile") as GameObject);
 
+                kek.transform.SetParent(mapcontainer.transform);
+                text = kek.GetComponent<Text>();
+                text.font = arial;
+                text.text = tile.Name;
+                text.fontSize = 24;
+           
+
             }
             kek.transform.SetParent(mapcontainer.transform);
             kek.transform.position = tile.TilePosition;
             kek.transform.rotation = Quaternion.Euler(tile.TileRotation);
             kek.transform.localScale = tile.TileScale;
             
+           
+
+
+
+
+
         }
         return mapcontainer;
     }
 
     private static List<GameTile> ReadMapFromFile()
     {
-        //Note: This will be moved into assetDatabase later on, and loaded from there.
+        
         using (StreamReader sr = new StreamReader("helloworld.txt"))
         {
             string asd = sr.ReadToEnd();
@@ -130,7 +154,8 @@ public static class Helpers
             return topkek;
         }
     }
-
+    
+    
 
 
     public static void WriteMapToDisk(ref List<GameTile> gameTiles)
