@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 using UnityEngine.SceneManagement;
+using Debug = UnityEngine.Debug;
 
 public enum GamePhases : byte
 {
@@ -19,16 +21,7 @@ public enum Levels : byte
 
 public class GameController
 {
-
-    public GameObject ChooseBase;
-    public GameObject Shopping;
-    public GameObject Auction;
-    public GameObject Movement;
-
-
-
-    public string PlayerCount;
-    public static string[] Rounds;
+    public string[] Rounds;
 
     private static GameController instance;
     public static GameController Instance
@@ -44,6 +37,10 @@ public class GameController
 
     public Dictionary<int, int> RoundNumbers = new Dictionary<int, int>(Gamerules.DefaultRoundNumbers);
 
+    public int PlayerCount
+    {
+        get { return Players.Count; }
+    }
     private List<Player> _players;
     public List<Player> Players
     {
@@ -53,6 +50,14 @@ public class GameController
     public void AddPlayers(Player player)
     {
         Players.Add(player);
+    }
+
+    public void RemovePlayerById(string id)
+    {
+        var playerToRemove = Players.Find(p => p.Id == id);
+        Debug.Log(playerToRemove);
+        if (playerToRemove != null)
+            Players.Remove(playerToRemove);
     }
 
     public int GetVehiclePrice(Levels currentLevel, Quality quality)

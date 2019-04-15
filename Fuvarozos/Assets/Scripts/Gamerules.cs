@@ -24,7 +24,7 @@ public static class Gamerules
         {new GameTile("8",new Vector3(15,0,0), Vector3.one,"Szeged") },
         {new GameTile("9",new Vector3(25,0,0), Vector3.one,"Békéscsaba") }
     };
-    public static List<GameTile> GameMap2= new List<GameTile>
+    public static List<GameTile> GameMap2 = new List<GameTile>
     {
         {new GameTile("0",new Vector3(5,20,0), Vector3.one ,"London") },
         {new GameTile("1",new Vector3(15,20,0), Vector3.one,"Berlin") },
@@ -106,4 +106,5 @@ public static class Gamerules
         {new Prices( Levels.Third, Quality.Good,250,150)},
         {new Prices( Levels.Third, Quality.Bad,80,50)}
     };
+
 }

@@ -13,21 +13,11 @@ public class MenuController : MonoBehaviour
 
     public GameObject InitialMenu;
     public GameObject PlayerSetup;
-
     public InputField[] Rounds;
-    public InputField TeamCount;
-    public InputField[] Teams;
 
-    private void OnEnable()
-    {
-        TeamCount.onValueChanged.AddListener(OnPlayerCounteditEnd);
+    public Transform TeamContainer;
+    private List<TeamComponent> Teams = new List<TeamComponent>();
 
-    }
-
-    private void OnDisable()
-    {
-        TeamCount.onValueChanged.RemoveListener(OnPlayerCounteditEnd);
-    }
 
     private void OnNewGameStart()
     {
@@ -37,25 +27,40 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    private void OnPlayerCounteditEnd(string value)
+    public void OnAddNewPlayerClick()
     {
-        int outvalue = 0;
-        int.TryParse(value, out outvalue);
-        outvalue = Mathf.Clamp(outvalue, 2, 4);
-        TeamCount.text = outvalue.ToString();
+        if (GameController.Instance.PlayerCount < 4)
+            GameController.Instance.AddPlayers(new Player(
+                Guid.NewGuid().ToString(),
+                ""
+                ));
+        RenderTeams();
+    }
 
-        for (int i = 0, length = Teams.Length; i < length; i++)
+    public void OnRemovePlayer(string id)
+    {
+        GameController.Instance.RemovePlayerById(id);
+        RenderTeams();
+    }
+
+    private void RenderTeams()
+    {
+        for (int i = 0; i < Teams.Count; i++)
         {
-            if (i < outvalue)
-            {
-                Teams[i].gameObject.SetActive(true);
-            }
-            else
-            {
-                Teams[i].gameObject.SetActive(false);
-            }
+            if (Teams[i] && Teams[i].gameObject)
+                Destroy(Teams[i].gameObject);
         }
+        Teams.Clear();
 
+
+        for (int i = 0; i < GameController.Instance.PlayerCount; i++)
+        {
+            var go = Instantiate(Resources.Load<TeamComponent>("Team"));
+            go.transform.SetParent(TeamContainer, true);
+            go.transform.localPosition.Set(go.transform.localPosition.x, (i + 1) * 40, go.transform.localPosition.z);
+            go.CurrentPlayer = GameController.Instance.Players[i];
+            Teams.Add(go);
+        }
     }
 
     public void OnNewGameClick()
@@ -64,12 +69,13 @@ public class MenuController : MonoBehaviour
         InitialMenu.SetActive(false);
         GameController.Instance = null;
         PlayerSetup.SetActive(true);
-
-
+        OnAddNewPlayerClick();
+        OnAddNewPlayerClick();
         for (int i = 0, length = Rounds.Length; i < length; i++)
         {
             Rounds[i].text = GameController.Instance.RoundNumbers[i].ToString();
         }
+
     }
 
     public void OnBackClick()
@@ -99,12 +105,9 @@ public class MenuController : MonoBehaviour
     }
     public void OnStartGameClick()
     {
-        AppController.Instance.PlayerCount = TeamCount.text;
-    //   for (int i = 0; i < int.TryParse(TeamCount.text); i++) {
-     //      AppController.Instance.Teamnames[i] = Teams[i].text;
-     //   }
+
         SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
-        Debug.Log(TeamCount.text);
+        //Debug.Log(TeamCount.text);
     }
 
 }
