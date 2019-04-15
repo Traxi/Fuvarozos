@@ -20,6 +20,12 @@ public enum Levels : byte
 public class GameController
 {
 
+    public GameObject ChooseBase;
+    public GameObject Shopping;
+    public GameObject Auction;
+    public GameObject Movement;
+
+
 
     public string PlayerCount;
     public static string[] Rounds;

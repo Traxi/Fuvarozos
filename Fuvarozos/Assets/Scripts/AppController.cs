@@ -17,6 +17,8 @@ public class AppController
         get { return playerCount.ToString(); }
         set { int.TryParse(value, out playerCount); }
     }
+       public string[] Teamnames { get; set; }  
+    
 
     private int playerCount;
 

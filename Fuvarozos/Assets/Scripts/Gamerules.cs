@@ -24,6 +24,20 @@ public static class Gamerules
         {new GameTile("8",new Vector3(15,0,0), Vector3.one,"Szeged") },
         {new GameTile("9",new Vector3(25,0,0), Vector3.one,"Békéscsaba") }
     };
+    public static List<GameTile> GameMap2= new List<GameTile>
+    {
+        {new GameTile("0",new Vector3(5,20,0), Vector3.one ,"London") },
+        {new GameTile("1",new Vector3(15,20,0), Vector3.one,"Berlin") },
+        {new GameTile("2",new Vector3(25,20,0), Vector3.one, "Helsinki") },
+        {new GameTile("3",new Vector3(0,10,0), Vector3.one,"Madrid") },
+        {new GameTile("4",new Vector3(10,10,0), Vector3.one,"Párizs") },
+        {new GameTile("5",new Vector3(20,10,0), Vector3.one,"Varsó") },
+        {new GameTile("6",new Vector3(30,10,0), Vector3.one,"Moszkva") },
+        {new GameTile("7",new Vector3(5,0,0), Vector3.one,"Róma") },
+        {new GameTile("8",new Vector3(15,0,0), Vector3.one,"Budapest") },
+        {new GameTile("9",new Vector3(25,0,0), Vector3.one,"Kijev") }
+    };
+
 
 
     public static Dictionary<int, int> DefaultRoundNumbers = new Dictionary<int, int>

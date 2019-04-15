@@ -100,6 +100,9 @@ public class MenuController : MonoBehaviour
     public void OnStartGameClick()
     {
         AppController.Instance.PlayerCount = TeamCount.text;
+    //   for (int i = 0; i < int.TryParse(TeamCount.text); i++) {
+     //      AppController.Instance.Teamnames[i] = Teams[i].text;
+     //   }
         SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         Debug.Log(TeamCount.text);
     }
