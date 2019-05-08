@@ -19,9 +19,14 @@ public class AppController
 
     private void OnActiveSceneChanged(Scene beforeScene, Scene afterScene)
     {
+        Debug.Log(beforeScene.name);
+        Debug.Log(afterScene.name);
         if (afterScene.name == "GameScene")
         {
             Helpers.DrawMap();
         }
+    }
+    public void Init() {
+
     }
 }

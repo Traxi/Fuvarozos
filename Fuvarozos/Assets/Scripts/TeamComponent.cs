@@ -8,9 +8,16 @@ public class TeamComponent : MonoBehaviour
     public Player CurrentPlayer;
     public Text PlayerName;
     private MenuController _menuController;
+
+    public void OnNameChanged(string value)
+    {
+        CurrentPlayer.Name = value;
+
+    } 
     private void Start()
     {
         _menuController = FindObjectOfType<MenuController>();
+
     }
     public void OnRemovePlayerClick()
     {

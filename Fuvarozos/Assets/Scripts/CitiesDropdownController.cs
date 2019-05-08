@@ -40,14 +40,14 @@ public class CitiesDropdownController : MonoBehaviour
     public void Dropdown_IndexChanged(int index)
     {
         Debug.Log((Cities)index);
-        CurrentPlayer.SelectedCity = (Cities)index; ;
+        CurrentPlayer.SelectedCity = (Cities)index; 
         if (index == 0)
         {
-            selectedcity.text = "Kérlek válassz telephelyet!";
+            selectedcity.text =CurrentPlayer.Name+"! Kérlek válassz telephelyet!";
         }
         else
         {
-            selectedcity.text = "Az általad választott székhely: " + CurrentPlayer.SelectedCity;
+            selectedcity.text =CurrentPlayer.Name+ ". Az általad választott székhely: " + CurrentPlayer.SelectedCity;
         }
 
     }
@@ -59,6 +59,8 @@ public class CitiesDropdownController : MonoBehaviour
         dropdown.onValueChanged.AddListener(Dropdown_IndexChanged);
         PopulateList();
         CurrentPlayer = GameController.Instance.Players.FirstOrDefault();
+        selectedcity.text = CurrentPlayer.Name + "! Kérlek válassz telephelyet!";
+
     }
 
     void OnDestroy()

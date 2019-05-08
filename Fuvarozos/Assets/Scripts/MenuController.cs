@@ -56,9 +56,10 @@ public class MenuController : MonoBehaviour
         for (int i = 0; i < GameController.Instance.PlayerCount; i++)
         {
             var go = Instantiate(Resources.Load<TeamComponent>("Team"));
-            go.transform.SetParent(TeamContainer, true);
+            go.transform.SetParent(TeamContainer);
             go.transform.localPosition.Set(go.transform.localPosition.x, (i + 1) * 40, go.transform.localPosition.z);
             go.CurrentPlayer = GameController.Instance.Players[i];
+
             Teams.Add(go);
         }
     }
@@ -109,5 +110,8 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
         //Debug.Log(TeamCount.text);
     }
-
+    public void Awake()
+    {
+        AppController.Instance.Init();
+    }
 }

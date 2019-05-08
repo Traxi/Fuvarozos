@@ -8,12 +8,14 @@ public class Player
     public int Balance;
     public string Name;
     public CitiesDropdownController.Cities SelectedCity;
+    public List<Vehicle> Vehicles = new List<Vehicle>();
 
     public Player(string id, string name)
     {
         Id = id;
         Name = name;
-        Balance = 1000;
+        Balance = 200;
         SelectedCity = CitiesDropdownController.Cities.Nincs;
+        Vehicles.Add(new Vehicle(Quality.Normal, GameController.CurrentRound, 80));
     }
 }

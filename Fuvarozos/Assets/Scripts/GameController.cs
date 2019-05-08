@@ -22,6 +22,7 @@ public enum Levels : byte
 public class GameController
 {
     public string[] Rounds;
+    public int CurrentRound;
 
     private static GameController instance;
     public static GameController Instance

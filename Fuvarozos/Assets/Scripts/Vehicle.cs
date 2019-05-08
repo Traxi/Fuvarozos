@@ -1,16 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class Vehicle
 {
-    public Vehicle(int id, Quality quality, int vehiclePurchaseRound,  int motTestDuration)
+    private static string GenerateId()
     {
-        Id = id;
+        System.Random random = new System.Random();
+        var byteArray = new byte[32];
+        random.NextBytes(byteArray); //fill with random bytes
+        return byteArray.ToString();
+    }
+
+    public Vehicle(Quality quality, int vehiclePurchaseRound, int motTestDuration)
+    {
+        Id = GenerateId();
         Quality = quality;
         MOTTestDuration = motTestDuration;
+        VehiclePurchaseRound = vehiclePurchaseRound;
     }
-    public int Id;
+    public string Id;
     public Quality Quality;
     public int VehiclePurchaseRound;
     public int MOTTestDuration;
