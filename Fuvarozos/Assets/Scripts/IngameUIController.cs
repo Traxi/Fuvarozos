@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class IngameUIController : MonoBehaviour
@@ -11,5 +10,9 @@ public class IngameUIController : MonoBehaviour
 
     public CitiesDropdownController CitiesDropdownController;
 
-
+    public void Start()
+    {
+        Instance = this;
+    }
+    public static IngameUIController Instance { get; private set; }
 }

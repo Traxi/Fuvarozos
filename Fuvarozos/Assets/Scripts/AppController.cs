@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Permissions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,7 +27,8 @@ public class AppController
             Helpers.DrawMap();
         }
     }
-    public void Init() {
+    public void Init()
+    {
 
     }
 }

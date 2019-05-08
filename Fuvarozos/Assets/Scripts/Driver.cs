@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Driver
 {
-    public Driver(int id, Quality quality)
+    public Driver(Quality quality)
     {
-        Id = id;
+        Id = Helpers.GenerateId();
         Quality = quality;
     }
-    public int Id;
+    public string Id;
     public Quality Quality;
 }

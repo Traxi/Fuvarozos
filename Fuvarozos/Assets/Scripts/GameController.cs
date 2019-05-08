@@ -1,17 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
 using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
 
-public enum GamePhases : byte
-{
-    Shopping,
-    Auctioning,
-    Movement,
-    Summary
-}
 public enum Levels : byte
 {
     First,
@@ -22,7 +16,36 @@ public enum Levels : byte
 public class GameController
 {
     public string[] Rounds;
-    public int CurrentRound;
+    public int CurrentRound = 0;
+    public int CurrentPlayerIndex
+    {
+        get
+        {
+            return Players.IndexOf(_currentPlayer);
+        }
+    }
+
+    private Player _currentPlayer;
+    public Player CurrentPlayer
+    {
+        get { return _currentPlayer ?? (_currentPlayer = Players.FirstOrDefault()); }
+        set
+        {
+            _currentPlayer = value;
+        }
+    }
+
+    public void SelectNextPlayer()
+    {
+        if (PlayerCount - 1 > CurrentPlayerIndex)
+            CurrentPlayer = Players[CurrentPlayerIndex + 1];
+    }
+
+    public void SelectPreviousPlayer()
+    {
+        if (CurrentPlayerIndex > 0)
+            CurrentPlayer = Players[CurrentPlayerIndex - 1];
+    }
 
     private static GameController instance;
     public static GameController Instance
@@ -34,9 +57,9 @@ public class GameController
         }
     }
 
-    private Levels CurrentLevel;
+    public Levels CurrentLevel;
 
-    public Dictionary<int, int> RoundNumbers = new Dictionary<int, int>(Gamerules.DefaultRoundNumbers);
+    public readonly Dictionary<int, int> RoundNumbers = new Dictionary<int, int>(Gamerules.DefaultRoundNumbers);
 
     public int PlayerCount
     {

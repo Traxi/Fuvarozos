@@ -10,6 +10,29 @@ using Random = UnityEngine.Random;
 
 public static class Helpers
 {
+    public static string GenerateId()
+    {
+        StringBuilder retVal = new StringBuilder(8);
+        retVal.Append((char)Random.Next(0, 26));
+        retVal.Append((char)Random.Next(0, 26));
+        retVal.Append(Random.Next(0, 999999));
+        Debug.Log(retVal.ToString());
+        return retVal.ToString();
+    }
+
+    private static readonly System.Random Random = new System.Random();
+    public static string GenerateLicenseId()
+    {
+        StringBuilder retVal = new StringBuilder(7);
+        retVal.Append((char)Random.Next(0, 26));
+        retVal.Append((char)Random.Next(0, 26));
+        retVal.Append((char)Random.Next(0, 26));
+        retVal.Append('-');
+        retVal.Append(Random.Next(0, 999));
+        Debug.Log(retVal.ToString());
+        return retVal.ToString();
+    }
+
     public static void GenerateGameTiles(ref List<GameTile> gameTiles)
     {
         //Győr

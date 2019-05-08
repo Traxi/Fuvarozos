@@ -7,18 +7,6 @@ using UnityEngine.UI;
 
 public class CitiesDropdownController : MonoBehaviour
 {
-    private Player _currentPlayer;
-    private Player CurrentPlayer
-    {
-        get { return _currentPlayer; }
-        set
-        {
-            _currentPlayer = value;
-            dropdown.value = (int) _currentPlayer.SelectedCity;
-        }
-    }
-
-    private int currentPlayerIndex = 0;
 
     public enum Cities
     {
@@ -34,49 +22,59 @@ public class CitiesDropdownController : MonoBehaviour
         Szeged,
         Békéscsaba,
     }
-    public Dropdown dropdown;
-    public Text selectedcity;
-
+    public Dropdown Dropdown;
+    public Text SelectedCity;
+    public Text NextPlayerText;
     public void Dropdown_IndexChanged(int index)
     {
         Debug.Log((Cities)index);
-        CurrentPlayer.SelectedCity = (Cities)index; 
+        GameController.Instance.CurrentPlayer.SelectedCity = (Cities)index;
         if (index == 0)
         {
-            selectedcity.text =CurrentPlayer.Name+"! Kérlek válassz telephelyet!";
+            SelectedCity.text = GameController.Instance.CurrentPlayer.Name + "! Kérlek válassz telephelyet!";
         }
         else
         {
-            selectedcity.text =CurrentPlayer.Name+ ". Az általad választott székhely: " + CurrentPlayer.SelectedCity;
+            SelectedCity.text = GameController.Instance.CurrentPlayer.Name + ". Az általad választott székhely: " + GameController.Instance.CurrentPlayer.SelectedCity;
         }
 
     }
 
-
-
     void Start()
     {
-        dropdown.onValueChanged.AddListener(Dropdown_IndexChanged);
+        Dropdown.onValueChanged.AddListener(Dropdown_IndexChanged);
         PopulateList();
-        CurrentPlayer = GameController.Instance.Players.FirstOrDefault();
-        selectedcity.text = CurrentPlayer.Name + "! Kérlek válassz telephelyet!";
 
+        SelectedCity.text = GameController.Instance.CurrentPlayer.Name + "! Kérlek válassz telephelyet!";
+        NextPlayerText.text = "Következő Játékos";
     }
 
     void OnDestroy()
     {
-        dropdown.onValueChanged.RemoveListener(Dropdown_IndexChanged);
+        Dropdown.onValueChanged.RemoveListener(Dropdown_IndexChanged);
     }
 
     public void OnNextPlayerClick()
     {
-        if (currentPlayerIndex < GameController.Instance.Players.Count-1)
-            CurrentPlayer = GameController.Instance.Players[++currentPlayerIndex];
+        if (GameController.Instance.CurrentPlayer == GameController.Instance.Players.Last())
+        {
+            IngameUIController.Instance.CitiesDropdownController.gameObject.SetActive(false);
+            IngameUIController.Instance.ShopUiController.gameObject.SetActive(true);
+
+            return;
+        }
+
+        GameController.Instance.SelectNextPlayer();
+        Dropdown.value = (int)GameController.Instance.CurrentPlayer.SelectedCity;
+        if (GameController.Instance.PlayerCount - 1 == GameController.Instance.CurrentPlayerIndex)
+        {
+            NextPlayerText.text = "Játék indítása";
+        }
     }
 
     void PopulateList()
     {
-        dropdown.AddOptions(Enum.GetNames(typeof(Cities)).ToList());
+        Dropdown.AddOptions(Enum.GetNames(typeof(Cities)).ToList());
     }
 }
 

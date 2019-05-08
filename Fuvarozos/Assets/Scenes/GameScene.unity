@@ -1263,8 +1263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d5c902e091ef54db1b6dd8a5a5701b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropdown: {fileID: 1563545035}
-  selectedcity: {fileID: 1310471679}
+  Dropdown: {fileID: 1563545035}
+  SelectedCity: {fileID: 1310471679}
+  NextPlayerText: {fileID: 1929079977}
 --- !u!1 &1563545033
 GameObject:
   m_ObjectHideFlags: 0
